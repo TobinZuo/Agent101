@@ -1,0 +1,2 @@
+agent101-mock: request=1; lastRole=user
+agent101-mock: request=2; lastRole=tool

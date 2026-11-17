@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "verifiedOn": "2026-11-18",
+  "timezone": "Asia/Shanghai",
+  "platform": {
+    "os": "darwin",
+    "arch": "arm64",
+    "release": "25.2.0",
+    "node": "v24.11.1",
+    "npm": "10.9.4"
+  },
+  "sourceCommit": "38a6a5c965aa99ab525161efb7cc5cf1fe62fced",
+  "sourceWorktreeClean": true,
+  "installedPackages": {
+    "@deepseek-ai/dsh": "0.2.2-rc.3",
+    "@deepseek-ai/cordis": "4.1.0",
+    "@deepseek-ai/dsh-llm": "0.2.2-rc.3",
+    "esbuild": "0.27.0"
+  },
+  "lockfileSha256": "a488109762e6e886146cc191477043fb2c8842dd4151b33f283eeebc6baf2244",
+  "installation": {
+    "command": "npm ci --prefer-offline --no-audit --no-fund",
+    "exitCode": 0,
+    "cleanInstall": true
+  },
+  "firstTask": {
+    "command": "npm run first-task",
+    "exitCode": 0,
+    "profile": "headless",
+    "permissionMode": "workspace-write",
+    "approvalPolicy": "never",
+    "mockModel": true,
+    "auxiliaryTitleGeneration": false,
+    "turns": 1,
+    "steps": 2,
+    "toolCalls": 1,
+    "toolResults": 1,
+    "finalReason": {
+      "kind": "completed"
+    },
+    "fixtureFilesUnchanged": true,
+    "fixtureSha256": {
+      "README.md": "3d4163ef80bf8afe52ac2cadd42172153d9edc7ad76473c869fafead5e4a8e10",
+      "package.json": "0184fcb65cfd3f34947fb635b9810e5938b2ae34e377ff123590b6cbd31fe87a",
+      "server.mjs": "c391638de996365a234ccbd4679f577dbc1e645e896d5fbda78d928061bf2c3a"
+    },
+    "eventsFile": "first-task.events.jsonl",
+    "stderrFile": "first-task.stderr.txt",
+    "normalization": {
+      "sessionId": "<generated-session-id>",
+      "cwd": "<temporary-workspace>"
+    }
+  },
+  "cordis": {
+    "command": "node cordis-demo.mjs <pinned-checkout>",
+    "exitCode": 0,
+    "usesRealVendoredSource": true,
+    "modelCalls": false,
+    "stdoutFile": "cordis.stdout.txt"
+  },
+  "sourceComparisons": [
+    {
+      "sourcePath": "packages/core/agent-loop/src/agent.ts",
+      "installedPath": "@deepseek-ai/dsh-agent-loop/src/agent.ts",
+      "sha256": "6fa6bd4c0ab2aaea988b92a3fd079fa38271f4b8065ec325a6ab09ec93eb13c8",
+      "identical": true
+    },
+    {
+      "sourcePath": "packages/core/tools/src/index.ts",
+      "installedPath": "@deepseek-ai/dsh-tools/src/index.ts",
+      "sha256": "5d95d7f47781ba001a0116feb61a87bf436f2ca587c01fb4ce517258710b7537",
+      "identical": true
+    },
+    {
+      "sourcePath": "vendor/cordis/src/fiber.ts",
+      "installedPath": "@deepseek-ai/cordis/src/fiber.ts",
+      "sha256": "b64c3a97f15f0381479dcf3d25965e56dc4cecfa4a0881fc055a49f65b9945df",
+      "identical": true
+    }
+  ],
+  "notValidated": [
+    "Real model-provider requests or reasoning quality",
+    "Web UI interaction",
+    "Windows or Linux execution",
+    "Performance or success-rate benchmarks",
+    "Every published source or compiled file"
+  ]
+}

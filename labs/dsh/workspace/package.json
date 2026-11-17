@@ -1,0 +1,6 @@
+{
+  "name": "agent101-dsh-fixture",
+  "private": true,
+  "type": "module",
+  "scripts": { "start": "node server.mjs" }
+}

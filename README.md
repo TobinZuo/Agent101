@@ -4,9 +4,9 @@
 
 **系统学习、构建与记录 AI Agent：从运行原理，到工程实现，再到真实场景。**
 
-这里记录我对 Agent 系统的学习、实验与思考：拆解关键概念，阅读优秀项目，复现典型方案，记录工程取舍和失败案例，逐步形成一套可查阅、可验证、可复用的知识体系。
+围绕真实项目，逐层拆解 Agent 系统：先观察任务与实验，再解释关键机制，最后对照源码。这里记录学习、实现、工程取舍和失败案例，逐步形成一套可查阅、可验证、可复用的知识体系。
 
-> 持续更新：已发布第一期 DSH 中英文教程与离线实验。下文知识地图和实践路线描述后续建设方向，已完成内容见教程入口。
+> 持续更新：已发布 DSH 第 00～03 篇中英文教程与配套实验。下文知识地图和实践路线描述后续建设方向，已完成内容见教程入口。
 
 ## 导航
 
@@ -32,11 +32,16 @@
 
 ## 已发布教程
 
-| 期数 | 教程 | 配套实践 |
-| --- | --- | --- |
-| 01 | [读懂 DSH：从一次请求到 Agent 的生命周期](notes/dsh/01-harness-and-agent-loop.md) · [English](notes/dsh/01-harness-and-agent-loop.en.md) | [插件卸载与协作取消的离线实验](labs/dsh-lifecycle-demo.mjs) |
+从 [DSH 教程目录](notes/dsh/README.md)开始，建议先动手读第 01 篇，按需回看导读。
 
-第一期从真实源码解释 Harness、插件上下文、Agent Loop、Session 与取消流程。实验运行：`node labs/dsh-lifecycle-demo.mjs`。
+| 篇目 | 教程 | 配套实践 |
+| --- | --- | --- |
+| 00 | [DSH 全景导读](notes/dsh/00-harness-and-agent-loop.md) · [English](notes/dsh/00-harness-and-agent-loop.en.md) | [JavaScript 异步取消示例](labs/dsh-lifecycle-demo.mjs) |
+| 01 | [启动 DSH，观察你的第一个任务](notes/dsh/01-first-task.md) · [English](notes/dsh/01-first-task.en.md) | 真实 DSH + 固定模型，读取练习文件 |
+| 02 | [一句输入，怎样走完 Agent 执行链](notes/dsh/02-agent-execution-chain.md) · [English](notes/dsh/02-agent-execution-chain.en.md) | 用运行事件对照真实函数 |
+| 03 | [插件和 ctx 怎样工作](notes/dsh/03-plugins-and-context.md) · [English](notes/dsh/03-plugins-and-context.en.md) | 真实 Cordis 依赖、卸载与重载实验 |
+
+每篇只解决一个核心问题。中英文共用[实验与运行证据](labs/dsh/README.md)，明确区分源码事实、实测结果和教学示例。
 
 ## 知识地图
 
@@ -136,7 +141,9 @@ Agent101/
 ## 近期计划
 
 - [x] 初始化 README：定位、知识地图、实践路线与参考教程。
-- [x] 发布第 01 期 DSH 教程：中英文正文、固定版本源码链接与离线实验。
+- [x] 发布 DSH 第 00～03 篇：全景导读、首次任务、执行链、插件与上下文。
+- [x] 补充真实 DSH 文件读取与 Cordis 生命周期实验，以及固定版本源码和运行证据。
+- [ ] 根据读者反馈打磨前三篇，继续拆解在途任务取消与资源清理。
 - [ ] 写下第一篇笔记：Agent、Workflow 与 LLM 应用的边界。
 - [ ] 实现第一个实验：带工具调用、退出条件与执行日志的最小 Agent Loop。
 - [ ] 为最小 Agent 建立一组任务与失败样例，形成评估基线。

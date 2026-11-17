@@ -4,9 +4,9 @@
 
 **Learn, build, and document AI agents—from core mechanisms to engineering and real applications.**
 
-This repository captures my learning, experiments, and reflections on agent systems: understanding key concepts, studying open-source projects, reproducing common approaches, and documenting engineering tradeoffs and failures. The goal is a body of knowledge that is easy to navigate, verify, and reuse.
+Understand agent systems through real projects: observe tasks and experiments, explain key mechanisms, then follow their source code. This repository records learning, implementations, engineering tradeoffs, and failures, building knowledge that is easy to navigate, verify, and reuse.
 
-> Updated regularly: the first DSH tutorial is available in Chinese and English, with an offline experiment. The knowledge map and roadmap describe future work; completed content is linked below.
+> Updated regularly: DSH chapters 00–03 are available in Chinese and English, with companion experiments. The knowledge map and roadmap describe future work; completed content is linked below.
 
 ## Contents
 
@@ -32,11 +32,16 @@ The overview is available in Chinese and English. Translations of topic notes an
 
 ## Published tutorials
 
-| Episode | Tutorial | Companion experiment |
-| --- | --- | --- |
-| 01 | [Understanding DSH: from a Request to the Agent Lifecycle](notes/dsh/01-harness-and-agent-loop.en.md) · [简体中文](notes/dsh/01-harness-and-agent-loop.md) | [Offline experiment on plugin unloading and cooperative cancellation](labs/dsh-lifecycle-demo.mjs) |
+Start with the [DSH tutorial index](notes/dsh/README_EN.md). Try chapter 01 first and return to the overview as needed.
 
-The first episode follows real source code to explain the harness, plugin contexts, agent loop, Session, and cancellation. Run the experiment with `node labs/dsh-lifecycle-demo.mjs`.
+| Chapter | Tutorial | Companion practice |
+| --- | --- | --- |
+| 00 | [DSH Overview](notes/dsh/00-harness-and-agent-loop.en.md) · [简体中文](notes/dsh/00-harness-and-agent-loop.md) | [JavaScript cancellation demonstration](labs/dsh-lifecycle-demo.mjs) |
+| 01 | [Start DSH and Observe Your First Task](notes/dsh/01-first-task.en.md) · [简体中文](notes/dsh/01-first-task.md) | Real DSH with a fixed model, reading fixture files |
+| 02 | [Follow an Input Through the Agent Execution Chain](notes/dsh/02-agent-execution-chain.en.md) · [简体中文](notes/dsh/02-agent-execution-chain.md) | Connect execution events to real functions |
+| 03 | [How Plugins and ctx Work](notes/dsh/03-plugins-and-context.en.md) · [简体中文](notes/dsh/03-plugins-and-context.md) | Real Cordis dependencies, teardown, and reactivation |
+
+Each chapter answers one core question. Both languages share [experiments and execution evidence](labs/dsh/README_EN.md), distinguishing source facts, observed results, and teaching examples.
 
 ## Knowledge map
 
@@ -136,7 +141,9 @@ Reference links checked on 2026-11-18. Refer to each project's current documenta
 ## Next steps
 
 - [x] Initialize the README with the repository purpose, knowledge map, roadmap, and reference tutorials.
-- [x] Publish DSH episode 01 with Chinese and English text, pinned source links, and an offline experiment.
+- [x] Publish DSH chapters 00–03: overview, first task, execution chain, and plugins and contexts.
+- [x] Add real DSH file-reading and Cordis lifecycle experiments, with pinned sources and execution evidence.
+- [ ] Refine the first three chapters through reader feedback, then cover in-flight cancellation and resource cleanup.
 - [ ] Write the first note: boundaries between agents, workflows, and LLM applications.
 - [ ] Build the first experiment: a minimal agent loop with tool calling, stopping conditions, and execution logs.
 - [ ] Create a task set and failure examples for the minimal agent to establish an evaluation baseline.

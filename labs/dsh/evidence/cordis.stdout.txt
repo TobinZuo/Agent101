@@ -1,0 +1,12 @@
+consumer before provider: PENDING
+consumer: Hello, Agent101!
+effect: acquired
+consumer after provider: ACTIVE
+effect: released
+consumer after provider disposal: PENDING
+service removed: true
+consumer: Hello, Agent101!
+effect: acquired
+consumer after replacement: ACTIVE
+effect: released
+PASS: dependency activation, teardown, replacement, and root cleanup

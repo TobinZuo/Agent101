@@ -1,0 +1,13 @@
+# Follow the official keyless fixture while retaining the production loop/tools.
+# Disable auxiliary title generation so the two main-loop requests are observable.
+- id: session-title-llm
+  disabled: true
+
+- id: agent-default-model
+  config:
+    provider: agent101-mock
+    model: agent101-mock
+
+- insert:
+    - id: agent101-mock-llm
+      name: './mock-llm.mjs'
