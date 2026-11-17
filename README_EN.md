@@ -6,11 +6,12 @@
 
 This repository captures my learning, experiments, and reflections on agent systems: understanding key concepts, studying open-source projects, reproducing common approaches, and documenting engineering tradeoffs and failures. The goal is a body of knowledge that is easy to navigate, verify, and reuse.
 
-> Work in progress: the repository overview and content plan are in place. Articles and code experiments will follow. The topics and directories below are planned; they do not indicate existing implementations.
+> Updated regularly: the first DSH tutorial is available in Chinese and English, with an offline experiment. The knowledge map and roadmap describe future work; completed content is linked below.
 
 ## Contents
 
 - [What this repository covers](#what-this-repository-covers)
+- [Published tutorials](#published-tutorials)
 - [Knowledge map](#knowledge-map)
 - [Learning and practice roadmap](#learning-and-practice-roadmap)
 - [Repository organization](#repository-organization)
@@ -28,6 +29,14 @@ One question guides this work: **How can we make agents complete real tasks reli
 - **Projects and practice**: source code studies, minimal reproductions, approach comparisons, and lessons from real scenarios.
 
 The overview is available in Chinese and English. Translations of topic notes and experiments will be added over time, retaining relevant English terminology. Content explains mechanisms and tradeoffs before discussing specific frameworks, with links to original sources, experiments, or execution evidence wherever possible.
+
+## Published tutorials
+
+| Episode | Tutorial | Companion experiment |
+| --- | --- | --- |
+| 01 | [Understanding DSH: from a Request to the Agent Lifecycle](notes/dsh/01-harness-and-agent-loop.en.md) · [简体中文](notes/dsh/01-harness-and-agent-loop.md) | [Offline experiment on plugin unloading and cooperative cancellation](labs/dsh-lifecycle-demo.mjs) |
+
+The first episode follows real source code to explain the harness, plugin contexts, agent loop, Session, and cancellation. Run the experiment with `node labs/dsh-lifecycle-demo.mjs`.
 
 ## Knowledge map
 
@@ -60,7 +69,7 @@ Each stage aims to produce three things: an explanation, a runnable example, and
 
 ## Repository organization
 
-The planned structure below will be created as content is added:
+`notes/` and `labs/` already exist. Other directories will be created as content is added:
 
 ```text
 Agent101/
@@ -127,6 +136,7 @@ Reference links checked on 2026-11-18. Refer to each project's current documenta
 ## Next steps
 
 - [x] Initialize the README with the repository purpose, knowledge map, roadmap, and reference tutorials.
+- [x] Publish DSH episode 01 with Chinese and English text, pinned source links, and an offline experiment.
 - [ ] Write the first note: boundaries between agents, workflows, and LLM applications.
 - [ ] Build the first experiment: a minimal agent loop with tool calling, stopping conditions, and execution logs.
 - [ ] Create a task set and failure examples for the minimal agent to establish an evaluation baseline.
