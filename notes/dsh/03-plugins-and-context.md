@@ -2,6 +2,8 @@
 
 中文 | [English](03-plugins-and-context.en.md)
 
+> 也可以在 [Agent101 Web 工作台](../../web/README.md) 中学习本篇：启动实验、选择真实日志、联动查看源码。工作台使用固定本地模型适配器，无需 API Key。
+
 [仓库首页](../../README.md) · [全景导读](00-harness-and-agent-loop.md) · [上一篇：Agent 执行链](02-agent-execution-chain.md)
 
 > 源码基线：DeepSeek Harness `38a6a5c965aa99ab525161efb7cc5cf1fe62fced`。本篇实验使用其中 vendored Cordis 的真实实现，不调用模型，也不启动完整 DSH 应用。

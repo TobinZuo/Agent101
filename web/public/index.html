@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="在真实源码与执行日志之间，学习 Agent 系统。Agent101 DSH 实验室。">
+  <title>Agent101 · DSH 实验室</title>
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/app.css">
+  <script type="module" src="/app.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#workspace">跳到实验工作台 / Skip to workbench</a>
+  <svg class="icon-defs" aria-hidden="true"><defs>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z"/></symbol>
+    <symbol id="i-stop" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-14-2 18"/></symbol>
+    <symbol id="i-terminal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="m7 9 3 3-3 3m6 0h4"/></symbol>
+    <symbol id="i-nodes" viewBox="0 0 24 24"><rect x="2" y="8" width="6" height="8" rx="2"/><rect x="16" y="1" width="6" height="8" rx="2"/><rect x="16" y="15" width="6" height="8" rx="2"/><path d="M8 12h4V5h4m-4 7v7h4"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 5c-3-2-6-2-10-1v15c4-1 7-1 10 1 3-2 6-2 10-1V4c-4-1-7-1-10 1Zm0 0v15"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L20 5"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 3h7v7m0-7L10 14m0-10H4v16h16v-6"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 7v5h-5M4 17v-5h5m-4-5a8 8 0 0 1 14-2l1 7M4 12l1 7a8 8 0 0 0 14-2"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol>
+  </defs></svg>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/?lesson=execution"><span class="brand-symbol">a<span>→</span></span><span>Agent<span class="brand-number">101</span><small>OBSERVATORY</small></span></a>
+      <div class="sidebar-heading" data-i18n="learningPath"></div>
+      <nav id="lesson-nav" aria-label="学习路径"></nav>
+      <a id="overview-link" class="overview-link" target="_blank" rel="noopener"><svg class="icon"><use href="#i-book"/></svg><span data-i18n="overview"></span><svg class="icon small"><use href="#i-external"/></svg></a>
+      <div class="sidebar-bottom"><span class="eyebrow">DEEPSEEK HARNESS</span><p>Everything is a plugin.</p><span class="version-label">0.2.2-rc.3 <span>·</span> Cordis 4.1</span><div class="sidebar-note" data-i18n="sidebarNote"></div></div>
+    </aside>
+    <div class="page">
+      <header class="topbar"><div class="breadcrumb"><span>Agent101</span><svg class="icon small"><use href="#i-chevron"/></svg><span data-i18n="labName"></span></div><div class="topbar-actions"><a class="text-link" href="https://github.com/TobinZuo/Agent101" target="_blank" rel="noopener">GitHub <svg class="icon small"><use href="#i-external"/></svg></a><span class="vertical-rule"></span><button id="language" class="language-button" disabled><svg class="icon"><use href="#i-globe"/></svg><span></span></button></div></header>
+      <main id="workspace">
+        <section class="intro"><div><div id="lesson-eyebrow" class="eyebrow"></div><h1 id="lesson-title"></h1><p id="lesson-description" class="intro-description"></p></div><div class="live-environment"><span id="environment-dot" class="status-dot"></span><span id="environment-label"></span></div></section>
+        <section class="experiment-bar" aria-label="实验控制 / Experiment controls"><div class="task"><span class="task-icon"><svg class="icon"><use href="#i-terminal"/></svg></span><div><span class="task-label" data-i18n="task"></span><strong id="task-title"></strong><code id="task-command"></code></div></div><div class="experiment-controls"><div id="mode-group" class="segmented" role="group" aria-label="运行方式 / Run mode"><button data-mode="live" aria-pressed="true" data-i18n="live" disabled></button><button data-mode="replay" aria-pressed="false" data-i18n="replay" disabled></button></div><button id="start" class="button primary" disabled><svg class="icon"><use href="#i-play"/></svg><span data-i18n="start"></span></button><button id="stop" class="button outline" disabled><svg class="icon"><use href="#i-stop"/></svg><span data-i18n="stop"></span></button></div></section>
+        <div class="run-caption"><span id="mode-explanation"></span><span id="run-status" role="status"></span></div>
+        <div id="notice" class="notice" role="status" aria-live="polite"><span id="notice-text"></span><button id="notice-action" class="text-button" hidden disabled></button></div>
+        <section class="flow-section"><div class="section-caption"><span data-i18n="executionPath"></span><span class="micro" data-i18n="flowHint"></span></div><ol id="stages" class="stage-ribbon"></ol></section>
+        <div class="instrument-grid">
+          <section class="panel source-panel" aria-labelledby="source-heading"><header class="panel-header"><h2 id="source-heading"><svg class="icon"><use href="#i-code"/></svg><span data-i18n="source"></span></h2><a id="source-link" class="text-link" target="_blank" rel="noopener"><span data-i18n="openOriginal"></span><svg class="icon small"><use href="#i-external"/></svg></a></header><div class="source-toolbar"><label for="source-file" class="sr-only" data-i18n="sourceFile"></label><select id="source-file"></select><span id="source-revision" class="micro mono"></span></div><div id="code-scroll" class="code-scroll" tabindex="0" aria-label="源码 / Source code"><pre id="source-lines"></pre></div><div class="source-provenance"><span class="source-pin"></span><span data-i18n="mappingNote"></span></div><div class="explanation"><div class="explanation-heading"><span class="mini-label" data-i18n="whatHappened"></span><code id="function-name"></code></div><p id="event-explanation"></p><p id="evidence-boundary" class="evidence-boundary"></p></div></section>
+          <section class="panel trace-panel" aria-labelledby="trace-heading"><header class="panel-header"><h2 id="trace-heading"><svg class="icon"><use href="#i-nodes"/></svg><span data-i18n="trace"></span><span id="event-count" class="count-badge">0</span></h2><button id="export" class="text-button" disabled><svg class="icon small"><use href="#i-download"/></svg><span data-i18n="export"></span></button></header><div class="trace-toolbar"><div class="filter-group" role="group" aria-label="日志类型 / Log type"><button data-filter="all" aria-pressed="true" data-i18n="allEvents" disabled></button><button data-filter="diagnostic" aria-pressed="false" data-i18n="diagnostics" disabled></button></div><button id="follow" class="follow-button" aria-pressed="true" disabled><span class="status-dot"></span><span data-i18n="follow"></span></button></div><div class="event-scroll" id="event-scroll"><div id="empty-events" class="empty-state"><span class="empty-glyph"><svg class="icon"><use href="#i-nodes"/></svg></span><h3 data-i18n="emptyTitle"></h3><p data-i18n="emptyText"></p><span class="empty-tags"><code>turn/start</code><span>→</span><code>tool/result</code></span></div><ol id="events" class="events-list"></ol><div id="no-filter-results" class="filter-empty" hidden data-i18n="noDiagnostics"></div></div><div class="trace-navigation"><span id="selected-count" class="mono"></span><div><button id="previous" class="step-button" disabled aria-label="上一个事件 / Previous event">←</button><button id="next" class="step-button" disabled aria-label="下一个事件 / Next event">→</button></div><span id="elapsed" class="micro mono"></span></div><div class="raw-event"><div class="raw-heading"><span>RAW EVENT</span><span id="raw-type"></span></div><pre id="raw-json"></pre></div></section>
+        </div>
+        <section class="bottom-grid"><div class="panel result-panel"><header class="panel-header"><h2><span class="status-dot"></span><span id="result-title" data-i18n="result"></span></h2><span id="result-badge" class="micro"></span></header><pre id="result-output"></pre></div><aside class="reading-note"><span class="eyebrow" data-i18n="learnByAsking"></span><h2 id="question-title"></h2><p id="question-copy"></p><a id="tutorial-link" class="text-link" target="_blank" rel="noopener"><span data-i18n="readTutorial"></span><svg class="icon small"><use href="#i-arrow"/></svg></a></aside></section>
+        <footer class="workspace-footer"><span>Agent101 <span class="footer-dot">·</span> <span data-i18n="footer"></span></span><span class="mono">SOURCE 38a6a5c</span></footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

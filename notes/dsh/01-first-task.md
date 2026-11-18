@@ -2,6 +2,8 @@
 
 [简体中文](01-first-task.md) | [English](01-first-task.en.md) · [导读](00-harness-and-agent-loop.md) · [下一篇：执行链](02-agent-execution-chain.md) · [首页](../../README.md)
 
+> 也可以在 [Agent101 Web 工作台](../../web/README.md) 中学习本篇：启动实验、选择真实日志、联动查看源码。工作台使用固定本地模型适配器，无需 API Key。
+
 第一次学习 Agent，先观察一件完整的小事：它怎样请求读取两个文件，拿到结果，再给出回复？本篇先跑一个无需 API Key 的任务，把这些步骤变成能检查的事件，再说明怎样换成真实模型。
 
 **本篇目标**：跑通 DSH 的 headless profile，找到工具调用、工具结果和最终回复三个观察点。先不用理解全部插件和源码。

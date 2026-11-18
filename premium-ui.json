@@ -1,0 +1,11 @@
+{
+  "profile": "product-admin",
+  "sourceRoots": ["web/public"],
+  "locale": "zh-CN,en-US",
+  "canonicalMap": "UX-CONTRACT.md",
+  "requiredCapabilities": ["Select/Listbox", "Scrollbar", "Toast"],
+  "ownership": { "Select/Listbox": "native" },
+  "requiredCommands": ["unit", "build"],
+  "commands": { "unit": "npm test", "build": "npm run build" },
+  "evidence": { "failurePaths": "web/tests/server.test.mjs" }
+}

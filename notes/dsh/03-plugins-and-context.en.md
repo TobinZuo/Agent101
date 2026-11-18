@@ -2,6 +2,8 @@
 
 [中文](03-plugins-and-context.md) | English
 
+> Try this chapter in the [Agent101 Web workbench](../../web/README_EN.md): run experiments, select actual events and inspect linked source. The workbench uses the fixed local adapter; no API key is required.
+
 [Repository home](../../README_EN.md) · [Overview](00-harness-and-agent-loop.en.md) · [Previous: Agent execution chain](02-agent-execution-chain.en.md)
 
 > Source baseline: DeepSeek Harness `38a6a5c965aa99ab525161efb7cc5cf1fe62fced`. This experiment uses its actual vendored Cordis implementation. It makes no model calls and does not launch a complete DSH application.

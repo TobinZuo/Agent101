@@ -1,0 +1,53 @@
+{
+  "checkedAt": "2026-11-18T06:25:10.370Z",
+  "node": "v24.11.1",
+  "platform": "darwin",
+  "architecture": "arm64",
+  "sourceRevision": "38a6a5c965aa99ab525161efb7cc5cf1fe62fced",
+  "checks": [
+    {
+      "mode": "live",
+      "experiment": "first-task",
+      "status": "completed",
+      "validated": true,
+      "recordedEvidence": false,
+      "eventCount": 14,
+      "diagnostics": 2,
+      "durationMs": 3186
+    },
+    {
+      "mode": "live",
+      "experiment": "plugins",
+      "status": "completed",
+      "validated": true,
+      "recordedEvidence": false,
+      "eventCount": 13,
+      "diagnostics": 0,
+      "durationMs": 138
+    },
+    {
+      "mode": "replay",
+      "experiment": "first-task",
+      "status": "completed",
+      "validated": false,
+      "recordedEvidence": true,
+      "eventCount": 12,
+      "diagnostics": 0,
+      "durationMs": 3093
+    },
+    {
+      "mode": "live",
+      "experiment": "first-task",
+      "status": "cancelled",
+      "code": "CANCELLED",
+      "eventCount": 5,
+      "cancellationRequestedAfterChildOutput": true
+    }
+  ],
+  "limitations": [
+    "Fixed local model adapter; no remote model request",
+    "One execution per scenario, not a reliability benchmark",
+    "Source associations are teaching mappings, not instrumentation",
+    "Other operating systems were not executed in this verification"
+  ]
+}

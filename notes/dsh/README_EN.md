@@ -4,6 +4,10 @@
 
 Understand agent systems through one real project. Each chapter answers one question: observe a task or experiment, explain the mechanism, then locate its source. Start hands-on with chapter 01; return to chapter 00 when you need the broader map.
 
+## Web learning workbench
+
+Prefer a browser? Follow the [Web workbench instructions](../../web/README_EN.md). From the repository root, run `npm run setup` then `npm start`, and open <http://127.0.0.1:4173>. Live DSH/Cordis runs show raw logs beside source and explanations; recorded replay is explicitly labeled.
+
 ## Published chapters
 
 | Chapter | Core question | Practice and evidence |

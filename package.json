@@ -1,0 +1,17 @@
+{
+  "name": "agent101-observatory",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.9.0"
+  },
+  "scripts": {
+    "start": "node web/server.mjs",
+    "setup": "npm ci --prefix labs/dsh",
+    "test": "node --test web/tests/*.test.mjs",
+    "check": "node web/scripts/check.mjs",
+    "build": "node web/scripts/check.mjs",
+    "verify:runtime": "node web/scripts/verify-runtime.mjs"
+  }
+}

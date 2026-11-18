@@ -11,6 +11,7 @@ Understand agent systems through real projects: observe tasks and experiments, e
 ## Contents
 
 - [What this repository covers](#what-this-repository-covers)
+- [Web learning workbench](#web-learning-workbench)
 - [Published tutorials](#published-tutorials)
 - [Knowledge map](#knowledge-map)
 - [Learning and practice roadmap](#learning-and-practice-roadmap)
@@ -29,6 +30,21 @@ One question guides this work: **How can we make agents complete real tasks reli
 - **Projects and practice**: source code studies, minimal reproductions, approach comparisons, and lessons from real scenarios.
 
 The overview is available in Chinese and English. Translations of topic notes and experiments will be added over time, retaining relevant English terminology. Content explains mechanisms and tradeoffs before discussing specific frameworks, with links to original sources, experiments, or execution evidence wherever possible.
+
+## Web learning workbench
+
+Start real DSH / Cordis experiments in your browser. Inspect live events, linked source, raw JSON and explanations. Includes Chinese/English, stop, reconnect, replay and log export.
+
+Requires **Node.js >=24.9.0**. From the repository root:
+
+```sh
+npm run setup
+npm start
+```
+
+Open <http://127.0.0.1:4173>. File reading and plugin lifecycles execute for real; the model uses a local fixed adapter with no API key. You can also skip installation and choose explicitly labeled recorded-log replay.
+
+[Usage and boundaries](web/README_EN.md) · [Verification record](web/evidence/README.md)
 
 ## Published tutorials
 
@@ -74,7 +90,7 @@ Each stage aims to produce three things: an explanation, a runnable example, and
 
 ## Repository organization
 
-`notes/` and `labs/` already exist. Other directories will be created as content is added:
+`notes/`, `labs/` and `web/` already exist. Other directories will be created as content is added:
 
 ```text
 Agent101/
@@ -82,6 +98,7 @@ Agent101/
 ├── README_EN.md            # English overview
 ├── notes/                  # Concepts, mechanisms, and topic notes
 ├── labs/                   # Independently runnable minimal experiments
+├── web/                    # Local visual learning workbench
 ├── projects/               # End-to-end projects
 ├── readings/               # Paper, tutorial, and source code reading notes
 ├── evaluations/            # Evaluation tasks, metrics, and result analysis
@@ -143,6 +160,7 @@ Reference links checked on 2026-11-18. Refer to each project's current documenta
 - [x] Initialize the README with the repository purpose, knowledge map, roadmap, and reference tutorials.
 - [x] Publish DSH chapters 00–03: overview, first task, execution chain, and plugins and contexts.
 - [x] Add real DSH file-reading and Cordis lifecycle experiments, with pinned sources and execution evidence.
+- [x] Publish a bilingual Web workbench with live runs, linked source, replay and export.
 - [ ] Refine the first three chapters through reader feedback, then cover in-flight cancellation and resource cleanup.
 - [ ] Write the first note: boundaries between agents, workflows, and LLM applications.
 - [ ] Build the first experiment: a minimal agent loop with tool calling, stopping conditions, and execution logs.

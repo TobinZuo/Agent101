@@ -2,6 +2,8 @@
 
 [简体中文](02-agent-execution-chain.md) | [English](02-agent-execution-chain.en.md) · [Previous: first task](01-first-task.en.md) · [Next: plugins and ctx](03-plugins-and-context.en.md) · [Home](../../README_EN.md)
 
+> Try this chapter in the [Agent101 Web workbench](../../web/README_EN.md): run experiments, select actual events and inspect linked source. The workbench uses the fixed local adapter; no API key is required.
+
 The previous chapter exposed a tool call, file contents, and a final response. Now ask: **which code actually connects the model to the tools?**
 
 We follow the headless first-task path at official commit [`38a6a5c`][baseline]. Web and SDK surfaces can use the same core capabilities, but their entry and output adapters differ. They are outside this trace.

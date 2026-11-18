@@ -2,6 +2,8 @@
 
 [简体中文](02-agent-execution-chain.md) | [English](02-agent-execution-chain.en.md) · [上一篇：首次任务](01-first-task.md) · [下一篇：插件与 ctx](03-plugins-and-context.md) · [首页](../../README.md)
 
+> 也可以在 [Agent101 Web 工作台](../../web/README.md) 中学习本篇：启动实验、选择真实日志、联动查看源码。工作台使用固定本地模型适配器，无需 API Key。
+
 上一篇已经看到工具调用、读取结果和最终回复。这一篇回答一个问题：**这些事件背后，具体是哪段代码把模型和工具连起来的？**
 
 我们只追踪 headless 首次任务这条路径，固定源码提交为 [`38a6a5c`][baseline]。Web 与 SDK 也能使用同一套核心能力，但入口和输出适配不同，不把它们混进这条调用链。

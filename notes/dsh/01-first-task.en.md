@@ -2,6 +2,8 @@
 
 [简体中文](01-first-task.md) | [English](01-first-task.en.md) · [Overview](00-harness-and-agent-loop.en.md) · [Next: execution chain](02-agent-execution-chain.en.md) · [Home](../../README_EN.md)
 
+> Try this chapter in the [Agent101 Web workbench](../../web/README_EN.md): run experiments, select actual events and inspect linked source. The workbench uses the fixed local adapter; no API key is required.
+
 Start with one complete, small task: request two files, receive their contents, and reply. This chapter runs a task without an API key, turns its progress into observable events, and then explains how to repeat it with a real model.
 
 **Goal**: run DSH's headless profile and identify a tool call, its result, and the final response. Understanding every plugin or source file can wait.

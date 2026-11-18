@@ -1,0 +1,379 @@
+{
+  "schemaVersion": 1,
+  "repository": "https://github.com/deepseek-ai/deepseek-harness",
+  "revision": "38a6a5c965aa99ab525161efb7cc5cf1fe62fced",
+  "scope": {
+    "zh": "这是已观察 headless JSON 事件与固定版本源码的教学对应。事件映射直接来自投影源码；相关循环函数来自静态源码阅读，不是逐函数 tracing。实际实验运行的是另外锁定版本的发布包，不能据此断言其每个字节与此 checkout 一致。",
+    "en": "This is a teaching map from observed headless JSON events to pinned source. Event mapping follows projection code; related loop functions come from static reading, not per-function tracing. The experiment runs separately pinned published packages, so this map does not establish byte-for-byte equivalence with the checkout."
+  },
+  "lineNumbers": "one-based-inclusive",
+  "files": [
+    {
+      "path": "packages/core/agent-loop/src/agent.ts",
+      "sha256": "6fa6bd4c0ab2aaea988b92a3fd079fa38271f4b8065ec325a6ab09ec93eb13c8",
+      "url": "https://github.com/deepseek-ai/deepseek-harness/blob/38a6a5c965aa99ab525161efb7cc5cf1fe62fced/packages/core/agent-loop/src/agent.ts",
+      "snapshot": "agent.ts"
+    },
+    {
+      "path": "packages/bundle/headless/src/json-stream.ts",
+      "sha256": "953c3012e2091c660fa556deb0edbf965c9fecf46d5ef2ac00fba3c557f3c5e5",
+      "url": "https://github.com/deepseek-ai/deepseek-harness/blob/38a6a5c965aa99ab525161efb7cc5cf1fe62fced/packages/bundle/headless/src/json-stream.ts",
+      "snapshot": "json-stream.ts"
+    },
+    {
+      "path": "packages/bundle/headless/src/index.ts",
+      "sha256": "85618b00462ab33f314b95faaa08d05be6d8a0b56de65731cc49273dd889c7eb",
+      "url": "https://github.com/deepseek-ai/deepseek-harness/blob/38a6a5c965aa99ab525161efb7cc5cf1fe62fced/packages/bundle/headless/src/index.ts",
+      "snapshot": "headless.ts"
+    }
+  ],
+  "events": [
+    {
+      "id": "turn_start",
+      "match": {
+        "type": "status",
+        "phase": "turn_start"
+      },
+      "explanation": {
+        "zh": "循环记录 turn/start；headless 将该事实投影为轮次开始状态。",
+        "en": "The loop records turn/start; headless projects that fact as a turn-start status."
+      },
+      "proves": {
+        "zh": "当前会话已记录一个新轮次开始。",
+        "en": "A new turn start was recorded for this Session."
+      },
+      "doesNotProve": {
+        "zh": "不证明模型已收到请求，也不证明轮次最终成功。",
+        "en": "Does not prove a model request was sent or the turn eventually succeeded."
+      },
+      "sources": [
+        {
+          "file": "packages/core/agent-loop/src/agent.ts",
+          "startLine": 333,
+          "endLine": 346,
+          "functionName": "ReactLoopAgent.turn",
+          "role": "origin"
+        },
+        {
+          "file": "packages/bundle/headless/src/json-stream.ts",
+          "startLine": 258,
+          "endLine": 263,
+          "functionName": "projectJsonRun / onSessionEvent",
+          "role": "projection"
+        }
+      ]
+    },
+    {
+      "id": "step_start_1",
+      "match": {
+        "type": "status",
+        "phase": "step_start",
+        "step": 1
+      },
+      "explanation": {
+        "zh": "preStep 接纳准备结果后，循环先记录 step/start，再执行 step。",
+        "en": "After preStep admits the prepared work, the loop records step/start before running step."
+      },
+      "proves": {
+        "zh": "本轮的第一个逻辑 step 已开始。",
+        "en": "The first logical step has started."
+      },
+      "doesNotProve": {
+        "zh": "不等于模型已经响应；重试可能让一个 step 包含多次实际请求。",
+        "en": "Does not mean the model has responded; retries may create several attempts inside one step."
+      },
+      "sources": [
+        {
+          "file": "packages/core/agent-loop/src/agent.ts",
+          "startLine": 350,
+          "endLine": 376,
+          "functionName": "ReactLoopAgent.turn",
+          "role": "origin"
+        },
+        {
+          "file": "packages/bundle/headless/src/json-stream.ts",
+          "startLine": 264,
+          "endLine": 266,
+          "functionName": "projectJsonRun / onSessionEvent",
+          "role": "projection"
+        },
+        {
+          "file": "packages/core/agent-loop/src/agent.ts",
+          "startLine": 485,
+          "endLine": 503,
+          "functionName": "ReactLoopAgent.step",
+          "role": "related-call-path"
+        }
+      ]
+    },
+    {
+      "id": "tool_call",
+      "match": {
+        "type": "tool_call"
+      },
+      "explanation": {
+        "zh": "已提交的助手消息中的 tool-call 块交给工具系统；headless 另将 tool/call 事件投影为工具名、调用 ID 和输入。",
+        "en": "Tool-call blocks from the committed assistant message are dispatched to the tool system; headless projects tool/call with the tool, call ID, and input."
+      },
+      "proves": {
+        "zh": "会话记录了准备执行的工具调用和参数。",
+        "en": "The Session recorded a tool invocation and its arguments."
+      },
+      "doesNotProve": {
+        "zh": "不证明命令体已执行，也不证明策略允许或工具成功。",
+        "en": "Does not prove the command body ran, policy allowed it, or the tool succeeded."
+      },
+      "sources": [
+        {
+          "file": "packages/core/agent-loop/src/agent.ts",
+          "startLine": 592,
+          "endLine": 603,
+          "functionName": "ReactLoopAgent.step",
+          "role": "dispatch"
+        },
+        {
+          "file": "packages/bundle/headless/src/json-stream.ts",
+          "startLine": 293,
+          "endLine": 300,
+          "functionName": "projectJsonRun / onSessionEvent",
+          "role": "projection"
+        }
+      ]
+    },
+    {
+      "id": "tool_result",
+      "match": {
+        "type": "tool_result"
+      },
+      "explanation": {
+        "zh": "headless 从追加的 tool/result 事件提取模型可见文本，输出 status、result 和可选 error。result 是文本，不是 stdout 对象。",
+        "en": "Headless extracts model-facing text from an appended tool/result event and emits status, result, and optional error. result is text, not a stdout object."
+      },
+      "proves": {
+        "zh": "该调用已产生并记录一个返回结果；固定实验还需核对其中的两份文件内容。",
+        "en": "The call produced a recorded result; the fixed lab must also compare its two file contents."
+      },
+      "doesNotProve": {
+        "zh": "status=completed 仅表示工具返回；Shell 内命令仍可能非零退出。",
+        "en": "status=completed only means the tool returned; the shell command may still exit nonzero."
+      },
+      "sources": [
+        {
+          "file": "packages/bundle/headless/src/json-stream.ts",
+          "startLine": 301,
+          "endLine": 313,
+          "functionName": "projectJsonRun / onSessionEvent",
+          "role": "projection"
+        },
+        {
+          "file": "packages/bundle/headless/src/json-stream.ts",
+          "startLine": 172,
+          "endLine": 178,
+          "functionName": "resultText",
+          "role": "text-extraction"
+        }
+      ]
+    },
+    {
+      "id": "step_start_2",
+      "match": {
+        "type": "status",
+        "phase": "step_start",
+        "step": 2
+      },
+      "explanation": {
+        "zh": "工具批次没有结束轮次时，循环继续下一个 step；buildRequest 从 Session 派生消息供下一请求使用。",
+        "en": "When the tool batch does not conclude the turn, the loop advances to another step; buildRequest derives messages from the Session for the next request."
+      },
+      "proves": {
+        "zh": "第二个逻辑 step 已开始。配合适配器 request=2/lastRole=tool 标记，可确认本实验第二请求看到了工具结果。",
+        "en": "The second logical step has started. Together with the adapter's request=2/lastRole=tool marker, it confirms the lab's second request saw the tool result."
+      },
+      "doesNotProve": {
+        "zh": "该状态事件本身不包含请求消息，不能单独证明工具结果已发给模型，也不证明真实模型推理。",
+        "en": "The status event contains no request messages; alone it proves neither delivery of the result to a model nor real-model reasoning."
+      },
+      "sources": [
+        {
+          "file": "packages/core/agent-loop/src/agent.ts",
+          "startLine": 350,
+          "endLine": 376,
+          "functionName": "ReactLoopAgent.turn",
+          "role": "origin"
+        },
+        {
+          "file": "packages/core/agent-loop/src/agent.ts",
+          "startLine": 592,
+          "endLine": 603,
+          "functionName": "ReactLoopAgent.step",
+          "role": "continuation"
+        },
+        {
+          "file": "packages/core/agent-loop/src/agent.ts",
+          "startLine": 732,
+          "endLine": 749,
+          "functionName": "ReactLoopAgent.buildRequest",
+          "role": "history-derivation"
+        },
+        {
+          "file": "packages/bundle/headless/src/json-stream.ts",
+          "startLine": 264,
+          "endLine": 266,
+          "functionName": "projectJsonRun / onSessionEvent",
+          "role": "projection"
+        }
+      ]
+    },
+    {
+      "id": "text",
+      "match": {
+        "type": "text"
+      },
+      "explanation": {
+        "zh": "循环提交 assistant/message 后，headless 遍历内容块并输出文本。它不是逐 token 流。",
+        "en": "After assistant/message commits, headless iterates its blocks and emits text. This is not a token-by-token stream."
+      },
+      "proves": {
+        "zh": "当前助手消息已提交，包含这段文字。",
+        "en": "A committed assistant message contains this text."
+      },
+      "doesNotProve": {
+        "zh": "不证明任务已经完成，也不证明文字结论正确或来自真实模型。",
+        "en": "Does not prove completion, factual correctness, or a real model produced the text."
+      },
+      "sources": [
+        {
+          "file": "packages/core/agent-loop/src/agent.ts",
+          "startLine": 572,
+          "endLine": 589,
+          "functionName": "ReactLoopAgent.step",
+          "role": "commit"
+        },
+        {
+          "file": "packages/bundle/headless/src/json-stream.ts",
+          "startLine": 272,
+          "endLine": 278,
+          "functionName": "projectJsonRun / onSessionEvent",
+          "role": "projection"
+        }
+      ]
+    },
+    {
+      "id": "final",
+      "match": {
+        "type": "final"
+      },
+      "explanation": {
+        "zh": "runner 等待工作收敛并 flush Session，折叠结果后调用 projection.finish，输出 sessionId、reason、text。",
+        "en": "The runner waits for work to settle and flushes the Session, summarizes the outcome, then projection.finish emits sessionId, reason, and text."
+      },
+      "proves": {
+        "zh": "runner 已到达本次输出收尾；需 reason.kind=completed 且进程退出码为 0 才认定 Agent 运行完成。",
+        "en": "The runner reached output finalization; require reason.kind=completed and exit code zero to establish a completed Agent run."
+      },
+      "doesNotProve": {
+        "zh": "final 事件也可描述失败；completed 不证明业务答案正确或每条 Shell 命令成功。",
+        "en": "A final event can describe failure; completed does not prove a correct task answer or every shell command succeeded."
+      },
+      "sources": [
+        {
+          "file": "packages/bundle/headless/src/index.ts",
+          "startLine": 420,
+          "endLine": 439,
+          "functionName": "run",
+          "role": "settlement-and-summary"
+        },
+        {
+          "file": "packages/bundle/headless/src/json-stream.ts",
+          "startLine": 323,
+          "endLine": 328,
+          "functionName": "projectJsonRun / finish",
+          "role": "projection"
+        }
+      ]
+    },
+    {
+      "id": "session",
+      "match": {
+        "type": "session"
+      },
+      "explanation": {
+        "zh": "headless 已绑定会话，并输出本次会话标识与工作目录。",
+        "en": "Headless binds the Session and publishes its identity and working directory."
+      },
+      "proves": {
+        "zh": "headless 已绑定会话，并输出本次会话标识与工作目录。",
+        "en": "Headless binds the Session and publishes its identity and working directory."
+      },
+      "doesNotProve": {
+        "zh": "这还不表示模型请求已发送。",
+        "en": "This does not mean a model request has been sent."
+      },
+      "sources": [
+        {
+          "file": "packages/bundle/headless/src/json-stream.ts",
+          "startLine": 317,
+          "endLine": 323,
+          "functionName": "projectJsonRun",
+          "role": "projection"
+        }
+      ]
+    },
+    {
+      "id": "step_end",
+      "match": {
+        "type": "status",
+        "phase": "step_end"
+      },
+      "explanation": {
+        "zh": "循环在 finally 中记录 step/end，结束本次逻辑步骤。",
+        "en": "The loop records step/end in finally, closing the logical step."
+      },
+      "proves": {
+        "zh": "循环在 finally 中记录 step/end，结束本次逻辑步骤。",
+        "en": "The loop records step/end in finally, closing the logical step."
+      },
+      "doesNotProve": {
+        "zh": "结束步骤不等于成功；失败路径也会记录 step/end。",
+        "en": "Closing a step does not establish success; failure paths also record step/end."
+      },
+      "sources": [
+        {
+          "file": "packages/core/agent-loop/src/agent.ts",
+          "startLine": 390,
+          "endLine": 402,
+          "functionName": "ReactLoopAgent.turn",
+          "role": "origin"
+        }
+      ]
+    },
+    {
+      "id": "turn_end",
+      "match": {
+        "type": "status",
+        "phase": "turn_end"
+      },
+      "explanation": {
+        "zh": "循环记录轮次的终态；reason 是判断完成、失败或取消的依据。",
+        "en": "The loop records the terminal turn reason: completion, error, or cancellation."
+      },
+      "proves": {
+        "zh": "循环记录轮次的终态；reason 是判断完成、失败或取消的依据。",
+        "en": "The loop records the terminal turn reason: completion, error, or cancellation."
+      },
+      "doesNotProve": {
+        "zh": "还需要检查进程退出码和任务结果，才能判断整个实验成功。",
+        "en": "Process status and task evidence are also needed to establish experiment success."
+      },
+      "sources": [
+        {
+          "file": "packages/core/agent-loop/src/agent.ts",
+          "startLine": 425,
+          "endLine": 433,
+          "functionName": "ReactLoopAgent.turn",
+          "role": "origin"
+        }
+      ]
+    }
+  ]
+}
